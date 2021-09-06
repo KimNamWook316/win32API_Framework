@@ -9,14 +9,18 @@ public:
 
 	void Initialize();
 	void Update();
+	void LateUpdate();
 	void Render();
 	void Release();
 
 private:
 	HDC mHdc;
 	Obj* mPlayer;
-	Obj* mWall;
+	
+	std::list<Obj*> mListObj[OBJID::END];
 
-	std::list<Obj*> mListBullet;
+	int mFps;
+	DWORD mTime;
+
 };
 

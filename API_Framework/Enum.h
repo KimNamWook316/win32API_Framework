@@ -1,9 +1,28 @@
 #pragma once
 
-enum DIRECTION {
-	DIR_LEFT,
-	DIR_UP,
-	DIR_RIGHT,
-	DIR_BOTTOM,
-	DIR_NONE,
-};
+namespace BULLET {
+	enum DIRECTION {
+		LEFT,
+		RIGHT,
+		UP,
+		DOWN,
+		END,
+	};
+}
+
+namespace MONSTER {
+	enum DIRECTION {
+		LEFT,
+		RIGHT,
+		END,
+	};
+}
+
+namespace OBJID {
+	enum ID {
+		PLAYER,
+		BULLET,
+		MONSTER,
+		END,
+	};
+}

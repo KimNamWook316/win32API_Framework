@@ -31,8 +31,8 @@
     <Filter Include="Source Files\01.Obj\01.Bullet">
       <UniqueIdentifier>{f3126703-b809-4bb2-88a8-6b0254239a31}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\01.Obj\02.Wall">
-      <UniqueIdentifier>{c2da2231-8783-4d9e-baf0-9d471a311927}</UniqueIdentifier>
+    <Filter Include="Source Files\01.Obj\02.Monster">
+      <UniqueIdentifier>{54baa01a-0f35-4020-a4f8-d77acc8f92de}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -81,8 +81,11 @@
     <ClInclude Include="Enum.h">
       <Filter>Header Files\Include</Filter>
     </ClInclude>
-    <ClInclude Include="Wall.h">
-      <Filter>Source Files\01.Obj\02.Wall</Filter>
+    <ClInclude Include="AbFactory.h">
+      <Filter>Header Files\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Monster.h">
+      <Filter>Source Files\01.Obj\02.Monster</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -104,8 +107,8 @@
     <ClCompile Include="pch.cpp">
       <Filter>Source Files\99.Default</Filter>
     </ClCompile>
-    <ClCompile Include="Wall.cpp">
-      <Filter>Source Files\01.Obj\02.Wall</Filter>
+    <ClCompile Include="Monster.cpp">
+      <Filter>Source Files\01.Obj\02.Monster</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -2,7 +2,8 @@
 #include "Obj.h"
 
 Obj::Obj() 
-	:mSpeed(0.f) {
+	:mSpeed(0.f) 
+	,mbDead(false){
 	ZeroMemory(&mInfo, sizeof(mInfo));
 	ZeroMemory(&mInfo, sizeof(mRect));
 }

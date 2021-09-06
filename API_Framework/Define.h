@@ -4,3 +4,6 @@
 #define WINCY 600
 
 #define SAFE_DELETE(p) if(p) { delete p; p = nullptr; }
+
+#define OBJ_NOEVENT 0
+#define OBJ_DEAD 1

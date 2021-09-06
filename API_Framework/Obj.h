@@ -5,7 +5,8 @@ public:
 	~Obj();
 	
 	virtual void Initialize() = 0;
-	virtual void Update() = 0;
+	virtual int Update() = 0;
+	virtual void LateUpdate() = 0;
 	virtual void Render(HDC& hdc) = 0;
 	virtual void Release() = 0;
 
@@ -24,5 +25,7 @@ protected:
 	RECT mRect;
 
 	float mSpeed;
+
+	bool mbDead;
 };
 

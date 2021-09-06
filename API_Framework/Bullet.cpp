@@ -2,7 +2,7 @@
 #include "Bullet.h"
 
 Bullet::Bullet() 
-	:mDir(DIR_NONE){
+	: mDir(BULLET::END){
 }
 
 Bullet::~Bullet() {
@@ -16,26 +16,39 @@ void Bullet::Initialize() {
 	mSpeed = 20.f;
 }
 
-void Bullet::Update() {
+int Bullet::Update() {
+	if (mbDead) {
+		return OBJ_DEAD;
+	}
+
 	switch (mDir) {
-	case DIR_LEFT:
+	case BULLET::LEFT:
 		mInfo.x -= mSpeed;
 		break;
-	case DIR_UP:
+	case BULLET::UP:
 		mInfo.y -= mSpeed;
 		break;
-	case DIR_RIGHT:
+	case BULLET::RIGHT:
 		mInfo.x += mSpeed;
 		break;
-	case DIR_BOTTOM:
+	case BULLET::DOWN:
 		mInfo.y += mSpeed;
-		break;
-	case DIR_NONE:
 		break;
 	default:
 		break;
 	}
 	updateRect();
+
+	return OBJ_NOEVENT;
+}
+
+void Bullet::LateUpdate() {
+	if (100 >= mRect.left
+		|| WINCX - 100 <= mRect.right
+		|| 100 >= mRect.top
+		|| WINCY - 100 <= mRect.bottom) {
+		mbDead = true;
+	}
 }
 
 void Bullet::Render(HDC& hdc) {
@@ -44,3 +57,5 @@ void Bullet::Render(HDC& hdc) {
 
 void Bullet::Release() {
 }
+
+void Bullet::SetDir(BULLET::DIRECTION dir) { mDir = dir; }

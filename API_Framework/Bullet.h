@@ -6,12 +6,13 @@ public:
 	virtual ~Bullet();
 
 	virtual void Initialize() override;
-	virtual void Update() override;
+	virtual int Update() override;
+	virtual void LateUpdate() override;
 	virtual void Render(HDC& hdc) override;
 	virtual void Release() override;
-
-	void SetDir(DIRECTION dir) { mDir = dir; }
+	
+	void SetDir(BULLET::DIRECTION dir);
 
 private:
-	DIRECTION mDir;
+	BULLET::DIRECTION mDir;
 };

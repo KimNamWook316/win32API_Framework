@@ -1,9 +1,9 @@
 #pragma once
 #include "Obj.h"
-class Player : public Obj{
+class Monster : public Obj {
 public:
-	explicit Player();
-	virtual ~Player();
+	explicit Monster();
+	~Monster();
 
 	virtual void Initialize() override;
 	virtual int Update() override;
@@ -11,11 +11,9 @@ public:
 	virtual void Render(HDC& hdc) override;
 	virtual void Release() override;
 
-	void SetBullet(std::list<Obj*>* pBullet) { mPBullet = pBullet; }
+	void SetDir(MONSTER::DIRECTION dir) { mDir = dir; }
 
 private:
-	Obj* createBullet(BULLET::DIRECTION dir);
-
-private:
-	std::list<Obj*>* mPBullet;
+	MONSTER::DIRECTION mDir;
 };
+

@@ -19,7 +19,11 @@ void Player::Initialize() {
 	mSpeed = 5.f;
 }
 
-void Player::Update() {
+int Player::Update() {
+	if (mbDead) {
+		return OBJ_DEAD;
+	}
+
 	if (GetAsyncKeyState(VK_UP) & 0x8000) {
 		mInfo.y -= mSpeed;
 	}
@@ -34,23 +38,28 @@ void Player::Update() {
 	}
 
 	// W
-	if (GetAsyncKeyState(0x57) & 0x8000) {
-		mPBullet->emplace_back(createBullet(DIR_UP));
+	if (GetAsyncKeyState('W') & 0x8000) {
+		mPBullet->emplace_back(createBullet(BULLET::UP));
 	}
 	// A
-	if (GetAsyncKeyState(0x41) & 0x8000) {
-		mPBullet->emplace_back(createBullet(DIR_LEFT));
+	if (GetAsyncKeyState('A') & 0x8000) {
+		mPBullet->emplace_back(createBullet(BULLET::LEFT));
 	}
 	// S
-	if (GetAsyncKeyState(0x53) & 0x8000) {
-		mPBullet->emplace_back(createBullet(DIR_BOTTOM));
+	if (GetAsyncKeyState('S') & 0x8000) {
+		mPBullet->emplace_back(createBullet(BULLET::DOWN));
 	}
 	// D
-	if (GetAsyncKeyState(0x44) & 0x8000) {
-		mPBullet->emplace_back(createBullet(DIR_RIGHT));
+	if (GetAsyncKeyState('D') & 0x8000) {
+		mPBullet->emplace_back(createBullet(BULLET::RIGHT));
 	}
 
 	updateRect();
+
+	return OBJ_NOEVENT;
+}
+
+void Player::LateUpdate() {
 }
 
 void Player::Render(HDC& hdc) {
@@ -60,10 +69,8 @@ void Player::Render(HDC& hdc) {
 void Player::Release() {
 }
 
-Obj* Player::createBullet(DIRECTION dir) {
-	Obj* pObj = new Bullet;
-	pObj->Initialize();
-	pObj->SetPos(mInfo.x, mInfo.y);
+Obj* Player::createBullet(BULLET::DIRECTION dir) {
+	Obj* pObj = AbFactory<Bullet>::Create(mInfo.x, mInfo.y);
 	static_cast<Bullet*>(pObj)->SetDir(dir);
 
 	return pObj;

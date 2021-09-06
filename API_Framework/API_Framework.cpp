@@ -59,6 +59,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
         if (time + 10 < GetTickCount()) {
             mainGame.Update();
+            mainGame.LateUpdate();
             mainGame.Render();
 
             time = GetTickCount();
