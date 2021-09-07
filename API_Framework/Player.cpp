@@ -16,6 +16,13 @@ void Player::Initialize() {
 	mInfo.cX = 100;
 	mInfo.cY = 100;
 
+	POINT pt = {};
+	pt.x = mInfo.x + 100;
+	pt.y = mInfo.y;
+	mFirePoint = pt;
+
+	mAngle = atan2f(pt.y - mInfo.y, pt.x - mInfo.x) * 3.141592f / 180;
+
 	mSpeed = 5.f;
 }
 
@@ -24,17 +31,39 @@ int Player::Update() {
 		return OBJ_DEAD;
 	}
 
-	if (GetAsyncKeyState(VK_UP) & 0x8000) {
+	if (GetAsyncKeyState(VK_LEFT) & 0x8000) {
+		//if (GetAsyncKeyState(VK_UP) & 0x8000) {
+		//	mInfo.x -= mSpeed / sqrtf(2.f);
+		//	mInfo.y -= mSpeed / sqrtf(2.f);
+		//} else if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
+		//	mInfo.x -= mSpeed / sqrtf(2.f);
+		//	mInfo.y += mSpeed / sqrtf(2.f);
+		//} else {
+		//	mInfo.x -= mSpeed;
+		//}
+		mAngle += 3.141592f / 180;
+		mFirePoint.x = 100.f * cosf(mAngle);
+		mFirePoint.y = 100.f * sinf(mAngle);
+	}
+	else if (GetAsyncKeyState(VK_RIGHT) & 0x8000) {
+		//if (GetAsyncKeyState(VK_UP) & 0x8000) {
+		//	mInfo.x += mSpeed / sqrtf(2.f);
+		//	mInfo.y -= mSpeed / sqrtf(2.f);
+		//} else if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
+		//	mInfo.x += mSpeed / sqrtf(2.f);
+		//	mInfo.y += mSpeed / sqrtf(2.f);
+		//} else {
+		//	mInfo.x += mSpeed;
+		//}
+		mAngle += atan2f(mInfo.y - mFirePoint.y, mInfo.x - mFirePoint.x);
+		mFirePoint.x = 100.f * cosf(mAngle);
+		mFirePoint.y = 100.f * sinf(mAngle);
+	}
+	else if (GetAsyncKeyState(VK_UP) & 0x8000) {
 		mInfo.y -= mSpeed;
 	}
-	if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
+	else if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
 		mInfo.y += mSpeed;
-	}
-	if (GetAsyncKeyState(VK_LEFT) & 0x8000) {
-		mInfo.x -= mSpeed;
-	}
-	if (GetAsyncKeyState(VK_RIGHT) & 0x8000) {
-		mInfo.x += mSpeed;
 	}
 
 	// W
@@ -64,6 +93,8 @@ void Player::LateUpdate() {
 
 void Player::Render(HDC& hdc) {
 	Rectangle(hdc, mRect.left, mRect.top, mRect.right, mRect.bottom);
+	MoveToEx(hdc, mInfo.x, mInfo.y, nullptr);
+	LineTo(hdc, mFirePoint.x, mFirePoint.y);
 }
 
 void Player::Release() {

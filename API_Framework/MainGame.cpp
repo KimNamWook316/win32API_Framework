@@ -2,6 +2,8 @@
 #include "MainGame.h"
 #include "Player.h"
 #include "Monster.h"
+#include "CollisionManager.h"
+#include "Mouse.h"
 
 MainGame::MainGame() 
 	:mPlayer(nullptr) 
@@ -20,9 +22,12 @@ void MainGame::Initialize() {
 	mListObj[OBJID::PLAYER].emplace_back(pPlayer);
 	static_cast<Player*>(mListObj[OBJID::PLAYER].front())->SetBullet(&mListObj[OBJID::BULLET]);
 
-	Obj* pMonster = AbFactory<Monster>::Create();
+	Obj* pMonster = AbFactory<Monster>::Create(400.f, 200.f);
 	static_cast<Monster*>(pMonster)->SetDir(MONSTER::LEFT);
 	mListObj[OBJID::MONSTER].emplace_back(pMonster);
+
+	Obj* pMouse = AbFactory<Mouse>::Create();
+	mListObj[OBJID::MOUSE].emplace_back(pMouse);
 }
 
 void MainGame::Update() {
@@ -42,21 +47,13 @@ void MainGame::Update() {
 }
 
 void MainGame::LateUpdate() {
-	RECT rc = {};
-	for (auto& pBullet : mListObj[OBJID::BULLET]) {
-		for (auto& pMonster : mListObj[OBJID::MONSTER]) {
-			if (IntersectRect(&rc, &(pBullet->GetRect()), &(pMonster->GetRect()))) {
-				pBullet->Die();
-				pMonster->Die();
-			}
-		}
-	}
-
 	for (int i = 0; i < OBJID::END; ++i) {
 		for (auto& pObj : mListObj[i]) {
 			pObj->LateUpdate();
 		}
 	}
+	//CollisionManager::CollisionRect(mListObj[OBJID::BULLET], mListObj[OBJID::MONSTER]);
+	//CollisionManager::CollisionSphere(mListObj[OBJID::MOUSE], mListObj[OBJID::MONSTER]);
 }
 
 void MainGame::Render() {
@@ -87,7 +84,6 @@ void MainGame::Render() {
 }
 
 void MainGame::Release() {
-
 	for (int i = 0; i < OBJID::END; ++i) {
 		for_each(mListObj[i].begin(), mListObj[i].end(), Safe_Delete<Obj*>);
 		mListObj[i].clear();

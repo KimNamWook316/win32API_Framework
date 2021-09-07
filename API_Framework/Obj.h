@@ -17,8 +17,8 @@ public:
 
 	void Die() { mbDead = true; }
 
-	const INFO& GetInfo() { return mInfo; }
-	const RECT& GetRect() { return mRect; }
+	const INFO& GetInfo() const { return mInfo; }
+	const RECT& GetRect() const { return mRect; }
 
 protected:
 	void updateRect();

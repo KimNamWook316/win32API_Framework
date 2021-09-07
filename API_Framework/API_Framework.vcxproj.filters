@@ -34,6 +34,15 @@
     <Filter Include="Source Files\01.Obj\02.Monster">
       <UniqueIdentifier>{54baa01a-0f35-4020-a4f8-d77acc8f92de}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\98.Manager">
+      <UniqueIdentifier>{8c34a7bb-b509-4415-ad4a-1f0dea28cf26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\98.Manager\00.CollisionManager">
+      <UniqueIdentifier>{bf007718-62fc-42b7-9cba-8ff8ead23f3f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\01.Obj\04.Mouse">
+      <UniqueIdentifier>{3dd99913-ea81-4689-ab71-64f68e876a17}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -87,6 +96,12 @@
     <ClInclude Include="Monster.h">
       <Filter>Source Files\01.Obj\02.Monster</Filter>
     </ClInclude>
+    <ClInclude Include="CollisionManager.h">
+      <Filter>Source Files\98.Manager\00.CollisionManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Mouse.h">
+      <Filter>Source Files\01.Obj\04.Mouse</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="API_Framework.cpp">
@@ -109,6 +124,12 @@
     </ClCompile>
     <ClCompile Include="Monster.cpp">
       <Filter>Source Files\01.Obj\02.Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionManager.cpp">
+      <Filter>Source Files\98.Manager\00.CollisionManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Mouse.cpp">
+      <Filter>Source Files\01.Obj\04.Mouse</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

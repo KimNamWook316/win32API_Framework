@@ -23,6 +23,7 @@ namespace OBJID {
 		PLAYER,
 		MONSTER,
 		BULLET,
+		MOUSE,
 		END,
 	};
 }

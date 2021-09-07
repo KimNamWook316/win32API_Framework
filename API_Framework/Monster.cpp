@@ -5,11 +5,10 @@ Monster::Monster() {
 }
 
 Monster::~Monster() {
+    Release();
 }
 
 void Monster::Initialize() {
-    mInfo.x = 400.f;
-    mInfo.y = 200.f;
     mInfo.cX = 100.f;
     mInfo.cY = 100.f;
 
@@ -33,6 +32,7 @@ int Monster::Update() {
     }
 
     updateRect();
+    return OBJ_NOEVENT;
 }
 
 void Monster::LateUpdate() {

@@ -18,4 +18,7 @@ private:
 
 private:
 	std::list<Obj*>* mPBullet;
+
+	float mAngle;
+	POINT mFirePoint;
 };
