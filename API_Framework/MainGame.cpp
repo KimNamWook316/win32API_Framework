@@ -42,6 +42,16 @@ void MainGame::Update() {
 }
 
 void MainGame::LateUpdate() {
+	RECT rc = {};
+	for (auto& pBullet : mListObj[OBJID::BULLET]) {
+		for (auto& pMonster : mListObj[OBJID::MONSTER]) {
+			if (IntersectRect(&rc, &(pBullet->GetRect()), &(pMonster->GetRect()))) {
+				pBullet->Die();
+				pMonster->Die();
+			}
+		}
+	}
+
 	for (int i = 0; i < OBJID::END; ++i) {
 		for (auto& pObj : mListObj[i]) {
 			pObj->LateUpdate();

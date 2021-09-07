@@ -21,8 +21,8 @@ namespace MONSTER {
 namespace OBJID {
 	enum ID {
 		PLAYER,
-		BULLET,
 		MONSTER,
+		BULLET,
 		END,
 	};
 }

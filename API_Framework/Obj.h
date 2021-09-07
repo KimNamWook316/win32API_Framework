@@ -15,7 +15,10 @@ public:
 		mInfo.y = _y;
 	}
 
-	const INFO GetInfo() { return mInfo; }
+	void Die() { mbDead = true; }
+
+	const INFO& GetInfo() { return mInfo; }
+	const RECT& GetRect() { return mRect; }
 
 protected:
 	void updateRect();

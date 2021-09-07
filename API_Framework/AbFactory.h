@@ -10,7 +10,7 @@ public:
 
 		return pObj;
 	}
-
+	
 	static Obj* Create(const float& _x, const float& _y) {
 		Obj* pObj = new T;
 		pObj->Initialize();
